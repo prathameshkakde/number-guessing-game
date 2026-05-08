@@ -50,6 +50,30 @@ public class Main extends Application {
         Label resultLabel = new Label("Game messages will appear here");
 
         /*
+        * Event handler for button click
+        */
+        guessButton.setOnAction(e -> {
+
+            // Get text entered by user
+            String userInput = guessField.getText();
+
+            // Convert text into integer
+            int guessedNumber = Integer.parseInt(userInput);
+
+            /*
+            * Compare guessed number with secret number
+            */
+            if (guessedNumber < secretNumber) {
+                resultLabel.setText("Too low! Try again.");
+            } else if (guessedNumber > secretNumber) {
+                resultLabel.setText("Too much! Try again.");
+            } else {
+                resultLabel.setText("Correct! You guessed the number!");
+            }
+
+        });
+
+        /*
          * VBox layout:
          * Arranges all elements vertically
          */
