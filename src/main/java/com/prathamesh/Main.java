@@ -9,13 +9,27 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.util.Random;
+
 /*
  * Main class for the Number Guessing Game
  */
 public class Main extends Application {
 
+    // Secret random number for the game
+    private int secretNumber;
+
     @Override
     public void start(Stage stage) {
+
+        // Create Random object
+        Random random = new Random();
+
+        // Generate random number between 1 to 100
+        secretNumber = random.nextInt(100) + 1;
+
+        // Print secret number in console for testing
+        System.out.println("Secret Number: " + secretNumber);
 
         // Title label
         Label titleLabel = new Label("Number Guessing Game");
