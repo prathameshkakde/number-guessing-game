@@ -65,29 +65,57 @@ public class Main extends Application {
                 return;
             }
 
-            // Get text entered by user
-            String userInput = guessField.getText();
+            try {
 
-            // Convert text into integer
-            int guessedNumber = Integer.parseInt(userInput);
-            remainingAttempts--;
+                // Get text entered by user
+                String userInput = guessField.getText();
 
-            /*
-            * Compare guessed number with secret number
-            */
-            if (guessedNumber < secretNumber) {
-                resultLabel.setText("Too low! Attempts left: " + remainingAttempts);
-            } else if (guessedNumber > secretNumber) {
-                resultLabel.setText("Too high! Attempts left: " + remainingAttempts);
-            } else {
-                resultLabel.setText("Correct! You guessed the number!");
-            }
+                // Convert text into integer
+                int guessedNumber = Integer.parseInt(userInput);
 
-            /*
-            * Check if player has used all attempts
-            */
-            if (remainingAttempts == 0 && guessedNumber != secretNumber) {
-                resultLabel.setText("Game Over! The number was: " + secretNumber);
+                // Reduce remaining attempts
+                remainingAttempts--;
+
+                /*
+                 * Compare guessed number with secret number
+                 */
+                if (guessedNumber < secretNumber) {
+
+                    resultLabel.setText(
+                            "Too low! Attempts left: " + remainingAttempts
+                    );
+
+                } else if (guessedNumber > secretNumber) {
+
+                    resultLabel.setText(
+                            "Too high! Attempts left: " + remainingAttempts
+                    );
+
+                } else {
+
+                    resultLabel.setText(
+                            "Correct! You guessed the number!"
+                    );
+
+                }
+
+                /*
+                 * Check if player has used all attempts
+                 */
+                if (remainingAttempts == 0 && guessedNumber != secretNumber) {
+
+                    resultLabel.setText(
+                            "Game Over! The number was: " + secretNumber
+                    );
+
+                }
+
+            } catch (NumberFormatException exception) {
+
+                resultLabel.setText(
+                        "Please enter a valid number!"
+                );
+
             }
 
         });
