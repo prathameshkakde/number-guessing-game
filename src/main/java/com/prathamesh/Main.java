@@ -115,6 +115,9 @@ public class Main extends Application {
                             "Correct! You guessed the number!"
                     );
 
+                    // Disable further guessing
+                    guessField.setDisable(true);
+                    guessButton.setDisable(true);
                 }
 
                 /*
@@ -151,6 +154,10 @@ public class Main extends Application {
 
             // Clear input field
             guessField.clear();
+
+            // Re-enable input controls
+            guessField.setDisable(false);
+            guessButton.setDisable(false);
 
             // Reset message label
             resultLabel.setText("New game started!");
