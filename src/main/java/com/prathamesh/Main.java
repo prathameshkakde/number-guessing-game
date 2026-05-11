@@ -146,24 +146,8 @@ public class Main extends Application {
         */
         restartButton.setOnAction(event ->{
 
-            // Generate new secret number
-            secretNumber = random.nextInt(100) + 1;
-
-            // Reset attempts
-            remainingAttempts = 5;
-
-            // Clear input field
-            guessField.clear();
-
-            // Re-enable input controls
-            guessField.setDisable(false);
-            guessButton.setDisable(false);
-
-            // Reset message label
-            resultLabel.setText("New game started!");
-
-            // Print new secret number for testing
-            System.out.println("New Secret Number: " + secretNumber);
+            // Reset game state
+            resetGame(guessField, resultLabel, guessButton);
         });
 
         /*
@@ -199,6 +183,31 @@ public class Main extends Application {
 
         // Show window
         stage.show();
+    }
+
+    /*
+    * Resets the game state
+    */
+    private void resetGame( TextField guessField, Label resultLabel, Button guessButton){
+
+        // Generate new random number
+        secretNumber = random.nextInt(100) + 1;
+
+        // Reset attempts
+        remainingAttempts = 5;
+
+        // Clear input field
+        guessField.clear();
+
+        // Enable controls again
+        guessField.setDisable(false);
+        guessButton.setDisable(false);
+
+        // Rest message
+        resultLabel.setText("New game started!");
+
+        // Print secret number for testing
+        System.out.println("New Secret Number: " + secretNumber);
     }
 
     public static void main(String[] args) {
