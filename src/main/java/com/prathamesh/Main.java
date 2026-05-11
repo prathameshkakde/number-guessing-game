@@ -37,6 +37,12 @@ public class Main extends Application {
         // Title label
         Label titleLabel = new Label("Number Guessing Game");
 
+        // Style title text
+        titleLabel.setStyle(
+                "-fx-font-size: 20px; " +
+                        "-fx-font-weight: bold;"
+        );
+
         // Instruction label
         Label instructionLabel = new Label("Guess a number between 1 and 100\nYou have 5 attempts");
 
@@ -46,11 +52,20 @@ public class Main extends Application {
         // Placeholder text inside input box
         guessField.setPromptText("Enter your guess");
 
+        // Set preferred width for input field
+        guessField.setMaxWidth(200);
+
         // Button to submit guess
         Button guessButton = new Button("Submit Guess");
 
+        // Style submit button
+        guessButton.setStyle("-fx-font-size: 14px");
+
         // Button to restart the game
         Button restartButton = new Button("Restart Game");
+
+        // Style restart button
+        restartButton.setStyle("-fx-font-size: 14px");
 
         // Label for displaying game messages
         Label resultLabel = new Label("Game messages will appear here");
@@ -162,6 +177,9 @@ public class Main extends Application {
 
         // Center all elements
         layout.setAlignment(Pos.CENTER);
+
+        // Add spacing around window edges
+        layout.setStyle("-fx-padding: 20;");
 
         // Create scene
         Scene scene = new Scene(layout, 400, 300);
