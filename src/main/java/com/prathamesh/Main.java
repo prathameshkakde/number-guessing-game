@@ -19,14 +19,14 @@ public class Main extends Application {
     // Secret random number for the game
     private int secretNumber;
 
+    // Random object for generating numbers
+    private final Random random = new Random();
+
     // Total remaining attempts
     private int remainingAttempts = 5;
 
     @Override
     public void start(Stage stage) {
-
-        // Create Random object
-        Random random = new Random();
 
         // Generate random number between 1 to 100
         secretNumber = random.nextInt(100) + 1;
@@ -48,6 +48,9 @@ public class Main extends Application {
 
         // Button to submit guess
         Button guessButton = new Button("Submit Guess");
+
+        // Button to restart the game
+        Button restartButton = new Button("Restart Game");
 
         // Label for displaying game messages
         Label resultLabel = new Label("Game messages will appear here");
@@ -121,6 +124,27 @@ public class Main extends Application {
         });
 
         /*
+        * Restart game button logic
+        */
+        restartButton.setOnAction(event ->{
+
+            // Generate new secret number
+            secretNumber = random.nextInt(100) + 1;
+
+            // Reset attempts
+            remainingAttempts = 5;
+
+            // Clear input field
+            guessField.clear();
+
+            // Reset message label
+            resultLabel.setText("New game started!");
+
+            // Print new secret number for testing
+            System.out.println("New Secret Number: " + secretNumber);
+        });
+
+        /*
          * VBox layout:
          * Arranges all elements vertically
          */
@@ -132,6 +156,7 @@ public class Main extends Application {
                 instructionLabel,
                 guessField,
                 guessButton,
+                restartButton,
                 resultLabel
         );
 
