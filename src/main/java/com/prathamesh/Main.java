@@ -106,23 +106,17 @@ public class Main extends Application {
                 /*
                  * Compare guessed number with secret number
                  */
-                if (guessedNumber < secretNumber) {
+                String result = checkGuess(guessedNumber);
 
-                    resultLabel.setText(
-                            "Too low! Attempts left: " + remainingAttempts
-                    );
+                /*
+                * Display result with remaining attempts
+                */
+                if (!result.equals("Correct!")) {
 
-                } else if (guessedNumber > secretNumber) {
-
-                    resultLabel.setText(
-                            "Too high! Attempts left: " + remainingAttempts
-                    );
-
+                    resultLabel.setText(result + " Attempts left: " + remainingAttempts);
                 } else {
 
-                    resultLabel.setText(
-                            "Correct! You guessed the number!"
-                    );
+                    resultLabel.setText("Correct! You guessed the number!");
 
                     // Disable further guessing
                     guessField.setDisable(true);
@@ -221,6 +215,27 @@ public class Main extends Application {
 
         // Print secret number for testing
         System.out.println("New Secret Number: " + secretNumber);
+    }
+
+    /*
+    * Checks player's guess against secret number
+    */
+    public String checkGuess(int guessedNumber) {
+
+        if (guessedNumber < secretNumber) {
+            return "Too low!";
+        } else if (guessedNumber > secretNumber) {
+            return "Too high!";
+        } else {
+            return "Correct!";
+        }
+    }
+
+    /*
+    * Sets secret number for testing
+    */
+    public void setSecretNumber(int secretNumber) {
+        this.secretNumber = secretNumber;
     }
 
     public static void main(String[] args) {

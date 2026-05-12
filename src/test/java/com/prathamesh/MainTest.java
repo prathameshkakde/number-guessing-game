@@ -5,23 +5,52 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /*
-* Basic JUnit test class
+* Tests for Number Guessing Game logic
 */
 public class MainTest {
 
     /*
-    * Test simple addition
+    * Test low guess
     */
     @Test
-    void  testAddition() {
+    void testTooLowGuess() {
 
-        // Expected result
-        int expected = 5;
+        Main game = new Main();
 
-        // Actual result
-        int actual = 2 + 3;
+        game.setSecretNumber(50);
 
-        // Verify both values match
-        assertEquals(expected, actual);
+        String result = game.checkGuess(25);
+
+        assertEquals("Too low!", result);
+    }
+
+    /*
+     * Test high guess
+     */
+    @Test
+    void testTooHighGuess() {
+
+        Main game = new Main();
+
+        game.setSecretNumber(50);
+
+        String result = game.checkGuess(75);
+
+        assertEquals("Too high!", result);
+    }
+
+    /*
+     * Test correct guess
+     */
+    @Test
+    void testCorrectGuess() {
+
+        Main game = new Main();
+
+        game.setSecretNumber(50);
+
+        String result = game.checkGuess(50);
+
+        assertEquals("Correct!", result);
     }
 }
