@@ -19,11 +19,14 @@ public class Main extends Application {
     // Secret random number for the game
     private int secretNumber;
 
+    // Maximum number of attempts allowed
+    private static final int MAX_ATTEMPTS = 5;
+
     // Random object for generating numbers
     private final Random random = new Random();
 
     // Total remaining attempts
-    private int remainingAttempts = 5;
+    private int remainingAttempts = MAX_ATTEMPTS;
 
     @Override
     public void start(Stage stage) {
@@ -44,7 +47,7 @@ public class Main extends Application {
         );
 
         // Instruction label
-        Label instructionLabel = new Label("Guess a number between 1 and 100\nYou have 5 attempts");
+        Label instructionLabel = new Label("Guess a number between 1 and 100\nYou have " + MAX_ATTEMPTS + " attempts");
 
         // Label to display remaining attempts
         Label attemptsLabel = new Label("Attempts Left: " + remainingAttempts);
@@ -201,7 +204,7 @@ public class Main extends Application {
         secretNumber = random.nextInt(100) + 1;
 
         // Reset attempts
-        remainingAttempts = 5;
+        remainingAttempts = MAX_ATTEMPTS;
 
         // Reset attempts label
         attemptsLabel.setText("Attempts Left: " + remainingAttempts);
