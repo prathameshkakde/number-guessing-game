@@ -46,6 +46,9 @@ public class Main extends Application {
         // Instruction label
         Label instructionLabel = new Label("Guess a number between 1 and 100\nYou have 5 attempts");
 
+        // Label to display remaining attempts
+        Label attemptsLabel = new Label("Attempts Left: " + remainingAttempts);
+
         // Text field where user enters guess
         TextField guessField = new TextField();
 
@@ -93,6 +96,9 @@ public class Main extends Application {
 
                 // Reduce remaining attempts
                 remainingAttempts--;
+
+                // Update attempts label
+                attemptsLabel.setText("Attempts Left: " + remainingAttempts);
 
                 /*
                  * Compare guessed number with secret number
@@ -147,7 +153,7 @@ public class Main extends Application {
         restartButton.setOnAction(event ->{
 
             // Reset game state
-            resetGame(guessField, resultLabel, guessButton);
+            resetGame(guessField, resultLabel, guessButton, attemptsLabel);
         });
 
         /*
@@ -160,6 +166,7 @@ public class Main extends Application {
         layout.getChildren().addAll(
                 titleLabel,
                 instructionLabel,
+                attemptsLabel,
                 guessField,
                 guessButton,
                 restartButton,
@@ -188,13 +195,16 @@ public class Main extends Application {
     /*
     * Resets the game state
     */
-    private void resetGame( TextField guessField, Label resultLabel, Button guessButton){
+    private void resetGame( TextField guessField, Label resultLabel, Button guessButton, Label attemptsLabel) {
 
         // Generate new random number
         secretNumber = random.nextInt(100) + 1;
 
         // Reset attempts
         remainingAttempts = 5;
+
+        // Reset attempts label
+        attemptsLabel.setText("Attempts Left: " + remainingAttempts);
 
         // Clear input field
         guessField.clear();
